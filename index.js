@@ -67,8 +67,27 @@ createTaskBlock.addEventListener('submit', (event) => {
     const {target} = event
     const createTaskBlockInput = target.taskName
     const inputValue = createTaskBlockInput.value
-    tasks.push({id: String(Date.now()), completed: false, text: inputValue})
-    createTask(Date.now(), inputValue)
+
+    let error = document.createElement('span')
+    error.classList.add('error-message-block')
+    createTaskBlock.append(error)
+
+    if (!inputValue) {
+
+        error.textContent = 'Название задачи не должно быть пустым'
+
+    } else if (tasks.reduce((acc, item) => {
+        acc.push(item.text)
+        return acc
+    }, []).some(item => item === inputValue)) {
+
+        error.textContent = 'Задача с таким названием уже существует.'
+    }
+    else {
+        error.remove()
+        tasks.push({id: String(Date.now()), completed: false, text: inputValue})
+        createTask(tasks.at(-1).id, tasks.at(-1).text)
+    }
 
 })
 console.log(tasks)

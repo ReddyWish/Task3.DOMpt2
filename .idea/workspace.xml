@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e29ac390-3a2d-4b91-99f5-d50d71d4ad9c" name="Changes" comment="" />
+    <list default="true" id="e29ac390-3a2d-4b91-99f5-d50d71d4ad9c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +20,9 @@
         <option value="CSS File" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -54,6 +59,7 @@
       <workItem from="1670321381979" duration="30000" />
       <workItem from="1670321470693" duration="58000" />
       <workItem from="1670321551951" duration="453000" />
+      <workItem from="1670339433661" duration="7799000" />
     </task>
     <servers />
   </component>
