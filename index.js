@@ -62,31 +62,38 @@ tasks.forEach(task => {
 console.log(taskList)
 
 const createTaskBlock = document.querySelector('.create-task-block')
+let error = document.createElement('span')
+error.classList.add('error-message-block')
+createTaskBlock.append(error)
+
+
+
 createTaskBlock.addEventListener('submit', (event) => {
     event.preventDefault()
     const {target} = event
     const createTaskBlockInput = target.taskName
-    const inputValue = createTaskBlockInput.value
-
-    let error = document.createElement('span')
-    error.classList.add('error-message-block')
-    createTaskBlock.append(error)
-
-    if (!inputValue) {
-
-        error.textContent = 'Название задачи не должно быть пустым'
-
-    } else if (tasks.reduce((acc, item) => {
+    let inputValue = createTaskBlockInput.value
+    inputValue = inputValue.trim()
+    let err = document.querySelector('.error-message-block')
+    const existTask = tasks.reduce((acc, item) => {
         acc.push(item.text)
         return acc
-    }, []).some(item => item === inputValue)) {
+    }, []).some(item => item === inputValue)    //проверяем совпадение задач
 
-        error.textContent = 'Задача с таким названием уже существует.'
+
+    if (!inputValue) {
+        err.textContent = 'Название задачи не должно быть пустым'
+
+    } else if (existTask) {
+
+        err.textContent = 'Задача с таким названием уже существует.'
     }
     else {
-        error.remove()
+
         tasks.push({id: String(Date.now()), completed: false, text: inputValue})
         createTask(tasks.at(-1).id, tasks.at(-1).text)
+
+        err.textContent = ''
     }
 
 })
