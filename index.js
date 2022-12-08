@@ -1,4 +1,4 @@
-const tasks = [
+let tasks = [
     {
         id: '1138465078061',
         completed: false,
@@ -98,4 +98,53 @@ createTaskBlock.addEventListener('submit', (event) => {
 
 })
 console.log(tasks)
+
+
+
+const body = document.querySelector('body')
+const modalWindow = document.createElement('div')
+modalWindow.classList.add('modal-overlay')
+modalWindow.classList.add('modal-overlay_hidden')
+modalWindow.innerHTML = `<div class="delete-modal">
+        <h3 class="delete-modal__question">
+            Вы действительно хотите удалить эту задачу?
+        </h3>
+        <div class="delete-modal__buttons">
+            <button class="delete-modal__button delete-modal__cancel-button">
+                Отмена
+            </button>
+            <button class="delete-modal__button delete-modal__confirm-button">
+                Удалить
+            </button>
+        </div>
+    </div>`
+body.prepend(modalWindow)
+
+
+const deleteModalButtons = modalWindow.querySelector('.delete-modal__buttons')
+taskList.addEventListener('click', (event) => {
+    const {target} = event
+    const button = target.closest('button')
+    const taskToDelete = target.closest('[data-task-id]')
+
+    const idOfTask = String(taskToDelete.getAttribute('data-task-id'))
+    const deleteButton = deleteModalButtons.querySelector('.delete-modal__confirm-button')
+    if (button) {
+        modalWindow.classList.toggle('modal-overlay_hidden')
+    }
+    deleteButton.addEventListener('click', (event) => {
+        taskToDelete.remove()
+        console.log(idOfTask)
+        tasks = tasks.filter(item => item.id !== idOfTask)
+
+    })
+})
+
+
+deleteModalButtons.addEventListener('click', (event) => {
+    modalWindow.classList.toggle('modal-overlay_hidden')
+})
+
+
+
 
